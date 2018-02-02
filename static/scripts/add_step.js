@@ -26,15 +26,54 @@
   };
 
 
+
+
   var changeGroupBtn = document.querySelector('.change_group_btn');
 
   changeGroupBtn.onclick = function() {
+    var arrowBtn = this.nextElementSibling;
+    var addGroupBtn = arrowBtn.nextElementSibling;
+
     this.style.zIndex = '1';
-    
-    var groups = this.parentNode;
-    groups.style.height = '166px';
-    groups.querySelector('.add_group').style.opacity = '1';
+    addGroupBtn.style.zIndex = '2';
+    arrowBtn.style.zIndex = '3';
+
+    this.style.opacity = '0';
+    addGroupBtn.style.opacity = '1';
+    arrowBtn.firstElementChild.firstElementChild.style.opacity = '1';
+    arrowBtn.firstElementChild.style.transform = 'rotate(-270deg) translate3d(-4px, 5px, 0)';
+
+    var groupsBlock = this.parentNode;
+    var groupsCount = groupsBlock.querySelectorAll('label input[name="group"]').length;
+    var groupsBlockHeight = 44;
+    groupsBlockHeight += (groupsCount == 0) ? 0 : (groupsCount * 41 - 1);
+    groupsBlock.style.height = groupsBlockHeight + 'px';
   };
+
+  var arrowBtn = changeGroupBtn.nextElementSibling;
+
+  arrowBtn.onclick = function() {
+    var addGroupBtn = this.nextElementSibling;
+
+    setTimeout(function() {
+      arrowBtn.style.zIndex = '';
+      addGroupBtn.style.zIndex = '';
+      changeGroupBtn.style.zIndex = '';
+    }, 300);
+
+    changeGroupBtn.style.opacity = '';
+    addGroupBtn.style.opacity = '';
+    this.firstElementChild.firstElementChild.style.opacity = '';
+    this.firstElementChild.style.transform = '';
+
+    var groupsBlock = this.parentNode;
+    groupsBlock.style.height = '';
+  };
+
+
+
+
+
 
 
   function createStep() {

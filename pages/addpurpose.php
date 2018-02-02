@@ -41,6 +41,9 @@
         <label><input type="radio" name="group"><div class="group">Sport</div></label>
 
         <div class="change_group_btn">change group</div>
+
+        <div class="arrow_btn__groups"><div><div></div></div></div>
+
         <input type="button" name="add_group" value="+" class="add_group">
       </div>
     </form>

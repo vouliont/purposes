@@ -19,6 +19,7 @@ a { text-decoration: none; }
   min-height: 100%;
   background-color: rgb(0, 5, 54);
   padding: 20px 15px;
+  cursor: default;
 }
 
 ::placeholder {
