@@ -27,7 +27,7 @@
       <p>Steps</p>
       <div class="wrap_steps">
         <div class="step">
-          <input type="text" name="step_1" placeholder="enter step">
+          <input type="text" name="step[]" placeholder="enter step">
           <input type="button" value="-" class="remove_step">
         </div>
 

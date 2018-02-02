@@ -7,7 +7,7 @@
   var removingStep = false;
 
   addStepBtn.onclick = function() {
-    var step = createStep(document.querySelectorAll('.step').length + 1);
+    var step = createStep();
     this.insertAdjacentElement('beforeBegin', step);
 
     this.parentNode.style.height = (blockSteps.height += blockSteps.deltaHeight) + 'px';
@@ -34,10 +34,10 @@
   };
 
 
-  function createStep(num) {
+  function createStep() {
     var step = document.createElement('div');
     step.className = 'step';
-    step.innerHTML = '<input type="text" name="step_' + num + '" placeholder="enter step"><input type="button" value="-" class="remove_step">';
+    step.innerHTML = '<input type="text" name="step[]" placeholder="enter step"><input type="button" value="-" class="remove_step">';
 
     return step;
   }
