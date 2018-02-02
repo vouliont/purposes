@@ -34,23 +34,14 @@
         <input class="add_step" type="button" name="add_step" value="+">
       </div>
 
-      <p>Groups</p>
+      <p>Group</p>
       <div class="groups">
+        <label><input type="radio" name="group"><div class="group">Sport</div></label>
+        <label><input type="radio" name="group"><div class="group">Programming</div></label>
+        <label><input type="radio" name="group"><div class="group">Sport</div></label>
 
-        <span class="placeholder__groups">change group</span>
-
-        <div class="wrap__groups">
-          <input type="button" name="add_group" value="+" class="add_group">
-          <div class="group">Sport</div>
-          <div class="group">Programming</div>
-          <div class="group">Sport</div>
-          <div class="group">Programming</div>
-          <div class="group">Sport</div>
-          <div class="group">Programming</div>
-          <div class="group">Sport</div>
-          <div class="group">Programming</div>
-        </div>
-
+        <div class="change_group_btn">change group</div>
+        <input type="button" name="add_group" value="+" class="add_group">
       </div>
     </form>
 

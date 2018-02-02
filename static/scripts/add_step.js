@@ -25,12 +25,15 @@
     removeStep(target.parentNode);
   };
 
-  var groups = document.querySelector('.groups');
-  var wrapGroups = groups.querySelector('.wrap__groups');
 
-  groups.onclick = function() {
-    wrapGroups.style.top = '0';
-    this.style.height = '371px';
+  var changeGroupBtn = document.querySelector('.change_group_btn');
+
+  changeGroupBtn.onclick = function() {
+    this.style.zIndex = '1';
+    
+    var groups = this.parentNode;
+    groups.style.height = '166px';
+    groups.querySelector('.add_group').style.opacity = '1';
   };
 
 
