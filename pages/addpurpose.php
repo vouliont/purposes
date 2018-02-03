@@ -45,6 +45,11 @@
         <div class="arrow_btn__groups"><div><div></div></div></div>
 
         <input type="button" name="add_group" value="+" class="add_group">
+
+        <div class="create_new_group">
+          <input type="text" class="new_group_name" placeholder="enter new group" autocomplete="off">
+          <div class="confirm__create_new_group"></div>
+        </div>
       </div>
     </form>
 

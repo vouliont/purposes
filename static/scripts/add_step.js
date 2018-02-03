@@ -7,6 +7,8 @@
   };
   var removingStep = false;
 
+  var creatingNewGroup = false;
+
   addStepBtn.onclick = function() {
     var step = createStep();
     this.insertAdjacentElement('beforeBegin', step);
@@ -33,7 +35,6 @@
 
   changeGroupBtn.onclick = function() {
     var arrowBtn = this.nextElementSibling;
-    var addGroupBtn = arrowBtn.nextElementSibling;
 
     this.style.zIndex = '1';
     addGroupBtn.style.zIndex = '2';
@@ -54,7 +55,21 @@
   var arrowBtn = changeGroupBtn.nextElementSibling;
 
   arrowBtn.onclick = function() {
-    var addGroupBtn = this.nextElementSibling;
+    if (creatingNewGroup) {
+      var newGroupBlock = document.querySelector('.create_new_group');
+      var newGroupName = newGroupBlock.firstElementChild;
+
+      newGroupBlock.style.width = '';
+      newGroupBlock.style.borderRight = '';
+      newGroupName.style.paddingLeft = '';
+
+      setTimeout(function() {
+        newGroupName.value = '';
+        creatingNewGroup = false;
+      }, 300);
+
+      return;
+    }
 
     setTimeout(function() {
       arrowBtn.style.zIndex = '';
@@ -83,7 +98,6 @@
     var changeGroup = function() {
       var changeGroupBtn = this.querySelector('.change_group_btn');
       var arrowBtn = changeGroupBtn.nextElementSibling;
-      var addGroupBtn = arrowBtn.nextElementSibling;
 
       changeGroupBtn.innerHTML = target.textContent;
       changeGroupBtn.style.color = '#fff';
@@ -102,9 +116,74 @@
       this.style.height = '';
     };
 
-    setTimeout(changeGroup.bind(this), 150);
+    var time = 150;
+
+    if (creatingNewGroup) {
+      time += 300;
+
+      var newGroupBlock = document.querySelector('.create_new_group');
+      var newGroupName = newGroupBlock.firstElementChild;
+
+      newGroupBlock.style.width = '';
+      newGroupBlock.style.borderRight = '';
+      newGroupName.style.paddingLeft = '';
+
+      setTimeout(function() {
+        newGroupName.value = '';
+        creatingNewGroup = false;
+      }, time);
+    }
+
+    setTimeout(changeGroup.bind(this), time);
   };
 
+  var addGroupBtn = document.querySelector('.add_group');
+
+  addGroupBtn.onclick = function() {
+    if (creatingNewGroup) return;
+    creatingNewGroup = true;
+
+    var newGroupBlock = document.querySelector('.create_new_group');
+    var newGroupName = newGroupBlock.firstElementChild;
+
+    newGroupBlock.style.width = 'calc(100% - 50px)';
+    newGroupBlock.style.borderRight = '1px solid rgb(53, 201, 166)';
+    newGroupName.style.paddingLeft = '15px';
+  };
+
+  var confirmCreateGroupBtn = document.querySelector('.confirm__create_new_group');
+
+  confirmCreateGroupBtn.onclick = function() {
+    var nameGroup = this.previousElementSibling.value.trim();
+
+    if (nameGroup === '') return;
+
+    var newGroup = document.createElement('label');
+    newGroup.innerHTML = '<input type="radio" name="group" autocomplete="off"><div class="group" style="height: 0">' + nameGroup + '</div>';
+
+    document.querySelector('.groups > label:first-child').insertAdjacentElement('beforeBegin', newGroup);
+    setTimeout(function() {
+      newGroup.lastElementChild.style.height = '';
+    }, 5);
+
+    var groupsBlock = document.querySelector('.groups');
+
+    groupsBlock.style.height = groupsBlock.offsetHeight + 40 + 'px';
+
+    var newGroupBlock = this.parentNode;
+    var newGroupName = this.previousElementSibling;
+
+    newGroupBlock.style.width = '';
+    newGroupBlock.style.borderRight = '';
+    newGroupName.style.paddingLeft = '';
+
+    setTimeout(function() {
+      newGroupName.value = '';
+      newGroup.firstElementChild.checked = true;
+      newGroup.lastElementChild.dispatchEvent(new Event('click', {bubbles: true}));
+      creatingNewGroup = false;
+    }, 300);
+  };
 
 
 
