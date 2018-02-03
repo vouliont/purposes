@@ -90,17 +90,28 @@ input[name="step[]"] {
   height: 41px;
   border-top: 1px dotted rgb(180, 180, 180);
   padding: 0 15px;
+  position: relative;
+  transition: padding 0.15s;
 }
 
-.groups > label:first-child .group {
-  /* height: 40px; */
-  border-top-style: solid;
-}
+.groups > label:first-child .group { border-top: 1px solid rgb(53, 201, 166); }
 
 input[name="group"] { display: none; }
 
-input[name="group"]:checked + .change_group_btn {
-  color: #fff;
+input[name="group"]:checked + .group {
+  padding-left: 24px;
+}
+
+input[name="group"]:checked + .group::after {
+  content: '';
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: rgb(0, 172, 53);
+  position: absolute;
+  top: calc(50% - 4px);
+  left: 9px;
 }
 
 .change_group_btn {
@@ -145,7 +156,7 @@ input[name="group"]:checked + .change_group_btn {
   border-top: 3px solid rgb(53, 201, 166);
   border-radius: 50%;
   position: absolute;
-  top: -17px;
+  top: -16px;
   left: 0;
   transform: rotate(-45deg);
   opacity: 0;

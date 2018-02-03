@@ -1,4 +1,5 @@
 (function() {
+  // ********** STEPS **********
   var addStepBtn = document.querySelector('.add_step');
   var blockSteps = {
     height: 98,
@@ -27,7 +28,7 @@
 
 
 
-
+  // ********** GROUP **********
   var changeGroupBtn = document.querySelector('.change_group_btn');
 
   changeGroupBtn.onclick = function() {
@@ -70,16 +71,50 @@
     groupsBlock.style.height = '';
   };
 
+  document.querySelector('.groups').onclick = function(e) {
+    var target = e.target;
+
+    while (target.className != 'group') {
+      if (target == this) return;
+
+      target = target.parentNode;
+    }
+
+    var changeGroup = function() {
+      var changeGroupBtn = this.querySelector('.change_group_btn');
+      var arrowBtn = changeGroupBtn.nextElementSibling;
+      var addGroupBtn = arrowBtn.nextElementSibling;
+
+      changeGroupBtn.innerHTML = target.textContent;
+      changeGroupBtn.style.color = '#fff';
+
+      setTimeout(function() {
+        arrowBtn.style.zIndex = '';
+        addGroupBtn.style.zIndex = '';
+        changeGroupBtn.style.zIndex = '';
+      }, 300);
+
+      changeGroupBtn.style.opacity = '';
+      addGroupBtn.style.opacity = '';
+      arrowBtn.firstElementChild.firstElementChild.style.opacity = '';
+      arrowBtn.firstElementChild.style.transform = '';
+
+      this.style.height = '';
+    };
+
+    setTimeout(changeGroup.bind(this), 150);
+  };
 
 
 
 
 
 
+  // ********** FUNCTIONS **********
   function createStep() {
     var step = document.createElement('div');
     step.className = 'step';
-    step.innerHTML = '<input type="text" name="step[]" placeholder="enter step"><input type="button" value="-" class="remove_step">';
+    step.innerHTML = '<input type="text" name="step[]" placeholder="enter step" autocomplete="off" tabindex="2"><input type="button" value="-" class="remove_step">';
 
     return step;
   }

@@ -22,12 +22,12 @@
 
     <form class="add_purpose_form" action="<?= $_SERVER['SCRIPT_NAME'] ?>" method="POST">
       <p>Purpose name</p>
-      <input type="text" name="name" placeholder="enter purpose name">
+      <input type="text" name="name" placeholder="enter purpose name" autocomplete="off" tabindex="1">
 
       <p>Steps</p>
       <div class="wrap_steps">
         <div class="step">
-          <input type="text" name="step[]" placeholder="enter step">
+          <input type="text" name="step[]" placeholder="enter step" autocomplete="off" tabindex="2">
           <input type="button" value="-" class="remove_step">
         </div>
 
@@ -36,9 +36,9 @@
 
       <p>Group</p>
       <div class="groups">
-        <label><input type="radio" name="group"><div class="group">Sport</div></label>
-        <label><input type="radio" name="group"><div class="group">Programming</div></label>
-        <label><input type="radio" name="group"><div class="group">Sport</div></label>
+        <label><input type="radio" name="group" autocomplete="off"><div class="group">Sport</div></label>
+        <label><input type="radio" name="group" autocomplete="off"><div class="group">Programming</div></label>
+        <label><input type="radio" name="group" autocomplete="off"><div class="group">Sport</div></label>
 
         <div class="change_group_btn">change group</div>
 
