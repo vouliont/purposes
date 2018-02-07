@@ -3,14 +3,18 @@ p {
   margin: 25px 0 10px 10px;
 }
 
-form > p:first-child { margin-top: 0; }
+.form_create_purpose > p:first-child { margin-top: 0; }
+
+.form_create_purpose {
+  width: 100%;
+  max-width: 400px;
+}
 
 input[type="text"] {
   background-color: rgb(0, 5, 54);
   border: 2px solid rgb(53, 201, 166);
   border-radius: 22px;
   width: 100%;
-  max-width: 400px;
   height: 44px;
   line-height: 44px;
   padding: 0 15px;
@@ -18,19 +22,17 @@ input[type="text"] {
 
 /* ----------   STEPS   ---------- */
 
-.wrap_steps {
-  width: 100%;
-  max-width: 400px;
+.block_steps {
   height: 98px;
   position: relative;
   transition: height 0.3s;
 }
 
-.step {
+.block_step {
   margin-bottom: 10px;
   position: relative;
   height: 44px;
-  transition: all 0.3s;
+  transition: height 0.3s, opacity 0.3s, border 0.3s, margin 0.3s;
 }
 
 input[name="step[]"] {
@@ -38,7 +40,7 @@ input[name="step[]"] {
   height: 100%;
 }
 
-.remove_step {
+.btn_remove_step {
   width: 50px;
   height: 100%;
   line-height: 100%;
@@ -49,32 +51,29 @@ input[name="step[]"] {
   border-top-right-radius: 22px;
   border-bottom-right-radius: 22px;
   background-color: rgb(218, 0, 0);
-  text-align: center;
-  font-size: 26px;
+  font-size: 22px;
 }
 
-.remove_step:active { background-color: rgb(163, 3, 3); }
+.btn_remove_step:active { background-color: rgb(163, 3, 3); }
 
-.add_step {
+.btn_create_step {
   width: 100%;
   height: 44px;
   line-height: 44px;
   border: 0;
   border-radius: 22px;
   background-color: rgb(0, 142, 44);
-  font-size: 26px;
+  font-size: 22px;
   position: absolute;
   bottom: 0;
 }
 
-.add_step:active { background-color: rgb(3, 112, 37); }
+.btn_create_step:active { background-color: rgb(3, 112, 37); }
 
 /* ----------   GROUP   ---------- */
 
-.groups {
+.list_groups {
   position: relative;
-  width: 100%;
-  max-width: 400px;
   height: 44px;
   line-height: 40px;
   overflow: hidden;
@@ -85,8 +84,7 @@ input[name="step[]"] {
   padding-top: 40px;
 }
 
-.group {
-  width: 100%;
+.item__list_groups {
   height: 41px;
   border-top: 1px dotted rgb(180, 180, 180);
   padding: 0 15px;
@@ -95,15 +93,26 @@ input[name="step[]"] {
   transition: border 0.3s, height 0.3s, padding 0.15s;
 }
 
-.groups > label:first-child .group { border-top: 1px solid rgb(53, 201, 166); }
-
-input[name="group"] { display: none; }
-
-input[name="group"]:checked + .group {
-  padding-left: 24px;
+.anim_adding_new_group {
+  animation: anim_adding_group 0.3s forwards;
 }
 
-input[name="group"]:checked + .group::after {
+@keyframes anim_adding_group {
+  from {
+    height: 0;
+  }
+  to {
+    height: 41px;
+  }
+}
+
+.list_groups > label:first-child .item__list_groups { border-top: 1px solid rgb(53, 201, 166); }
+
+.list_groups > label input { display: none; }
+
+.list_groups > label input:checked + .item__list_groups { padding-left: 24px; }
+
+.list_groups > label input:checked + .item__list_groups::before {
   content: '';
   display: block;
   width: 8px;
@@ -115,7 +124,7 @@ input[name="group"]:checked + .group::after {
   left: 9px;
 }
 
-.change_group_btn {
+.btn_change_group {
   width: 100%;
   height: 40px;
   color: #a9a9a9;
@@ -123,21 +132,27 @@ input[name="group"]:checked + .group::after {
   padding-right: 60px;
   position: absolute;
   top: 0;
+  opacity: 0;
   transition: opacity 0.3s;
-  z-index: 3;
+  z-index: 1;
 }
 
-.arrow_btn__groups {
+.btn_change_group-visible {
+  z-index: 4;
+  opacity: 1;
+}
+
+.btn_arrow__list_groups {
   position: absolute;
   top: 0;
   right: 0;
   background-color: rgb(0, 5, 54);
   width: 50px;
   height: 40px;
-  z-index: 2;
+  z-index: 3;
 }
 
-.arrow_btn__groups > div {
+.btn_arrow__list_groups > div {
   width: 0;
   height: 0;
   border-style: solid;
@@ -148,10 +163,9 @@ input[name="group"]:checked + .group::after {
   top: 18px;
   right: 20px;
   transition: transform 0.3s;
-  z-index: 0;
 }
 
-.arrow_btn__groups > div > div {
+.btn_arrow__list_groups > div > div {
   width: 16px;
   height: 20px;
   border-top: 3px solid rgb(53, 201, 166);
@@ -164,7 +178,13 @@ input[name="group"]:checked + .group::after {
   transition: opacity 0.3s;
 }
 
-.add_group {
+.btn_arrow__list_groups-visible > div {
+  transform: rotate(-270deg) translate3d(-4px, 5px, 0);
+}
+
+.btn_arrow__list_groups-visible > div > div { opacity: 1; }
+
+.btn_create_group {
   width: 100%;
   height: 40px;
   line-height: 40px;
@@ -175,12 +195,16 @@ input[name="group"]:checked + .group::after {
   top: 0;
   opacity: 0;
   transition: opacity 0.3s;
-  z-index: 1;
+  z-index: 2;
 }
 
-.add_group:active { background-color: rgb(3, 112, 37); }
+.btn_create_group:active { background-color: rgb(3, 112, 37); }
 
-.create_new_group {
+.btn_create_group-visible {
+  opacity: 1;
+}
+
+.block_create_new_group {
   width: 0;
   height: 40px;
   overflow: hidden;
@@ -188,10 +212,19 @@ input[name="group"]:checked + .group::after {
   top: 0;
   left: 0;
   transition: width 0.3s, border 0.3s;
-  z-index: 4;
+  z-index: 5;
 }
 
-.groups .new_group_name {
+.block_create_new_group-visible {
+  width: calc(100% - 50px);
+  border-right: 1px solid rgb(53, 201, 166);
+}
+
+.block_create_new_group-visible > input {
+  padding-left: 15px !important;
+}
+
+.list_groups .new_group_name {
   border: 0;
   border-radius: 0;
   transition: padding 0.3s;
@@ -200,18 +233,13 @@ input[name="group"]:checked + .group::after {
   padding: 0 45px 0 0;
 }
 
-.confirm__create_new_group {
+.btn_confirm__block_create_new_group {
   width: 40px;
   height: 40px;
   position: absolute;
   top: 0;
   right: 0;
-  border-radius: 50%;
-  background: url('/static/images/confirm.png') no-repeat;
+  background: url('/static/images/confirm_image.png') no-repeat;
   background-position: center center;
   background-size: 50%;
-}
-
-.new_group {
-  height: 0;
 }
