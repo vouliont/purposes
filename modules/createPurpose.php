@@ -13,9 +13,7 @@
   </div>
 
   <p>Period</p>
-  <div class="list_period">
-    
-  </div>
+  <div class="list_period"></div>
 
   <p>Group</p>
   <div class="list_groups">

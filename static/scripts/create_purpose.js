@@ -118,8 +118,6 @@
     listGroups.blockCreateGroup.classList.add('block_create_new_group-visible');
   };
 
-
-
   listGroups.btnAddGroup.onclick = function() {
     var nameGroup = listGroups.blockCreateGroup.querySelector('input').value.trim();
 
@@ -127,7 +125,7 @@
 
     var data = 'namegroup=' + nameGroup;
 
-    ajaxRequest('/modules/creategroup.php', 'POST', data, function(data) {
+    ajaxRequest('/modules/createGroup.php', 'POST', data, function(data) {
       if (JSON.parse(data)[0] !== true) return;
 
       // Создание новой группы
@@ -148,12 +146,6 @@
     });
 
   };
-
-
-
-  // ********** PERIOD **********
-
-
 
 
 
@@ -202,7 +194,7 @@
 
     var xhr = new XMLHttpRequest();
 
-    xhr.onreadystatechoose = function() {
+    xhr.onreadystatechange = function() {
       if (xhr.readyState == 4 && xhr.status == 200) {
         func(xhr.responseText);
       }
