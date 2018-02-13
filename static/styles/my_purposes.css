@@ -1,0 +1,18 @@
+.list_purposes {
+  list-style: none;
+  /* margin-left: 10px; */
+}
+
+.name_purpose {
+  font-size: 24px;
+  color: rgb(53, 201, 166);
+}
+
+.list_steps {
+  list-style: disc;
+  padding: 5px 0 10px 40px;
+}
+
+.list_steps > li {
+  padding-bottom: 3px;
+}

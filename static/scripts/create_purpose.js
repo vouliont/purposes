@@ -43,7 +43,7 @@
     block: document.querySelector('.list_groups'),
     btnArrow: document.querySelector('.btn_arrow__list_groups'),
     btnCreateGroup: document.querySelector('.btn_create_group'),
-    btnChangeGroup: document.querySelector('.btn_change_group'),
+    btnChooseGroup: document.querySelector('.btn_choose_group'),
     btnAddGroup: document.querySelector('.btn_confirm__block_create_new_group'),
     blockCreateGroup: document.querySelector('.block_create_new_group'),
     listHeight: 44,
@@ -52,8 +52,8 @@
     closingBlock: false
   };
 
-  listGroups.btnChangeGroup.onclick = function() {
-    this.classList.remove('btn_change_group-visible');
+  listGroups.btnChooseGroup.onclick = function() {
+    this.classList.remove('btn_choose_group-visible');
     listGroups.btnArrow.classList.add('btn_arrow__list_groups-visible');
     listGroups.btnCreateGroup.classList.add('btn_create_group-visible');
 
@@ -78,7 +78,7 @@
 
     this.classList.remove('btn_arrow__list_groups-visible');
     listGroups.btnCreateGroup.classList.remove('btn_create_group-visible');
-    listGroups.btnChangeGroup.classList.add('btn_change_group-visible');
+    listGroups.btnChooseGroup.classList.add('btn_choose_group-visible');
 
     listGroups.block.style.height = '';
   };
@@ -106,7 +106,7 @@
     }
 
     setTimeout(function() {
-      fChangeGroup(target);
+      fChooseGroup(target);
       listGroups.creatingItem = false;
     }, time, target);
   };
@@ -125,20 +125,35 @@
 
     if (nameGroup === '') return;
 
-    var newGroup = document.createElement('label');
-    newGroup.innerHTML = '<input type="radio" name="group" autocomplete="off" value="group_name"><div class="item__list_groups anim_adding_new_group">' + nameGroup + '</div>';
+    var data = 'namegroup=' + nameGroup;
 
-    listGroups.block.querySelector('label:first-child').insertAdjacentElement('beforeBegin', newGroup);
-    listGroups.block.style.height = listGroups.block.offsetHeight + 41 + 'px';
+    ajaxRequest('/modules/creategroup.php', 'POST', data, function(data) {
+      if (JSON.parse(data)[0] !== true) return;
 
-    listGroups.blockCreateGroup.classList.remove('block_create_new_group-visible');
+      // Создание новой группы
+      var newGroup = document.createElement('label');
+      newGroup.innerHTML = '<input type="radio" name="group" autocomplete="off" value="' + JSON.parse(data)[1] + '"><div class="item__list_groups anim_adding_new_group">' + nameGroup + '</div>';
 
-    setTimeout(function() {
-      listGroups.blockCreateGroup.querySelector('input').value = '';
-      newGroup.firstElementChild.checked = true;
-      newGroup.lastElementChild.dispatchEvent(new Event('click', {bubbles: true}));
-    }, 300);
+      listGroups.block.querySelector('label:first-child').insertAdjacentElement('beforeBegin', newGroup);
+      listGroups.block.style.height = listGroups.block.offsetHeight + 41 + 'px';
+
+      listGroups.blockCreateGroup.classList.remove('block_create_new_group-visible');
+
+      setTimeout(function() {
+        listGroups.blockCreateGroup.querySelector('input').value = '';
+        // Выбор новой группы в списке групп
+        newGroup.firstElementChild.checked = true;
+        newGroup.lastElementChild.dispatchEvent(new Event('click', {bubbles: true}));
+      }, 300);
+    });
+
   };
+
+
+
+  // ********** PERIOD **********
+
+
 
 
 
@@ -147,7 +162,7 @@
   function fCreateStep() {
     var newStep = document.createElement('div');
     newStep.className = 'block_step';
-    newStep.innerHTML = '<input type="text" name="step[]" placeholder="enter step" autocomplete="off" tabindex="2"><input type="button" value="-" class="btn_remove_step">';
+    newStep.innerHTML = '<input type="text" name="steps[]" placeholder="enter step" autocomplete="off" tabindex="2"><input type="button" value="-" class="btn_remove_step">';
 
     return newStep;
   }
@@ -171,14 +186,30 @@
     }, 300);
   }
 
-  function fChangeGroup(target) {
-    listGroups.btnChangeGroup.innerHTML = target.textContent;
-    listGroups.btnChangeGroup.style.color = '#fff';
+  function fChooseGroup(target) {
+    listGroups.btnChooseGroup.innerHTML = target.textContent;
+    listGroups.btnChooseGroup.style.color = '#fff';
 
     listGroups.btnArrow.classList.remove('btn_arrow__list_groups-visible');
     listGroups.btnCreateGroup.classList.remove('btn_create_group-visible');
-    listGroups.btnChangeGroup.classList.add('btn_change_group-visible');
+    listGroups.btnChooseGroup.classList.add('btn_choose_group-visible');
 
     listGroups.block.style.height = '';
+  }
+
+  function ajaxRequest(url, method, data, callback) {
+    var func = callback || function(data) {};
+
+    var xhr = new XMLHttpRequest();
+
+    xhr.onreadystatechoose = function() {
+      if (xhr.readyState == 4 && xhr.status == 200) {
+        func(xhr.responseText);
+      }
+    };
+
+    xhr.open(method, url);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.send(data);
   }
 })();

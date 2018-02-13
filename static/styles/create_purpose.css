@@ -11,6 +11,8 @@ p {
 }
 
 input[type="text"] {
+  /* background-color: rgb(107, 105, 105);
+  border: 2px solid rgb(48, 47, 47); */
   background-color: rgb(0, 5, 54);
   border: 2px solid rgb(53, 201, 166);
   border-radius: 22px;
@@ -70,6 +72,10 @@ input[name="step[]"] {
 
 .btn_create_step:active { background-color: rgb(3, 112, 37); }
 
+/* ----------   PERIOD   ---------- */
+
+
+
 /* ----------   GROUP   ---------- */
 
 .list_groups {
@@ -124,7 +130,7 @@ input[name="step[]"] {
   left: 9px;
 }
 
-.btn_change_group {
+.btn_choose_group {
   width: 100%;
   height: 40px;
   color: #a9a9a9;
@@ -137,7 +143,7 @@ input[name="step[]"] {
   z-index: 1;
 }
 
-.btn_change_group-visible {
+.btn_choose_group-visible {
   z-index: 4;
   opacity: 1;
 }
@@ -242,4 +248,19 @@ input[name="step[]"] {
   background: url('/static/images/confirm_image.png') no-repeat;
   background-position: center center;
   background-size: 50%;
+}
+
+.btn_create_purpose {
+  display: block;
+  width: 100%;
+  max-width: 200px;
+  height: 44px;
+  border: 2px solid rgb(53, 201, 166);
+  border-radius: 22px;
+  margin: 30px auto 0;
+  background-color: rgba(150, 0, 86, 0.19);
+}
+
+.btn_create_purpose:active {
+  background-color: rgba(150, 0, 45, 0.36);
 }

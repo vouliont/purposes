@@ -1,0 +1,15 @@
+.purpose_added,
+.purpose_not_added {
+  width: 100%;
+  max-width: 400px;
+  height: 100px;
+  border: 2px solid rgb(53, 201, 166);
+  border-radius: 22px;
+  text-align: center;
+  font-size: 20px;
+  line-height: 98px;
+}
+
+.purpose_added { background-color: rgb(0, 142, 44); }
+
+.purpose_not_added { background-color: rgb(164, 0, 0); }
