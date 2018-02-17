@@ -18,7 +18,9 @@
 
   $id_group = intval(htmlspecialchars(trim($_REQUEST['group'])));
 
-  mysqli_query($db, "INSERT INTO `purposes` (`name`, `group_id`, `date`) VALUES ('{$name_purpose}', {$id_group}, " . time() . ")");
+  $period = $_REQUEST['period'];
+
+  mysqli_query($db, "INSERT INTO `purposes` (`name`, `group_id`, `date`, `period`) VALUES ('{$name_purpose}', {$id_group}, " . time() . ", {$period})");
 
   $id_purpose = mysqli_insert_id($db);
 

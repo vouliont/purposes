@@ -2,11 +2,7 @@
   margin: 0;
   padding: 0;
   outline: none;
-  /* font-family: "Acme", "Philosopher", sans-serif; */
   font-family: "Kurale";
-  /* font-family: "Alegreya"; */
-  /* font-family: "Philosopher"; */
-  /* font-family: "El Messiri"; */
   font-size: 16px;
   color: #fff;
   box-sizing: border-box;
@@ -16,13 +12,6 @@ html, body {
   width: 100%;
   height: 100%;
 }
-
-/* body {
-  background: url('/static/images/10.jpg') no-repeat;
-  background-size: cover;
-  background-position: center center;
-  background-attachment: fixed;
-} */
 
 .back_img {
   position: fixed;

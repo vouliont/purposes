@@ -39,6 +39,45 @@
 
   // ********** GROUP **********
 
+  var listPeriod = {
+    btnNextItem: document.querySelector('.next_item__list_period'),
+    btnPrevItem: document.querySelector('.prev_item__list_period'),
+    wrapItems: document.querySelector('.wrap_items__list_period'),
+    indexCheckedItem: 0,
+    countItems: 8,
+    items: document.querySelectorAll('.list_period input[type="radio"]')
+  };
+
+  listPeriod.btnNextItem.onclick = function() {
+    if (listPeriod.indexCheckedItem == listPeriod.countItems - 1) return;
+
+    if (listPeriod.indexCheckedItem == listPeriod.countItems - 2) this.classList.add('not_clickable');
+
+    if (listPeriod.indexCheckedItem == 0) listPeriod.btnPrevItem.classList.remove('not_clickable');
+
+    listPeriod.indexCheckedItem++;
+    listPeriod.items[listPeriod.indexCheckedItem].checked = true;
+
+    listPeriod.wrapItems.style.top = (-40 * listPeriod.indexCheckedItem) + 'px';
+  };
+
+  listPeriod.btnPrevItem.onclick = function() {
+    if (listPeriod.indexCheckedItem == 0) return;
+
+    if (listPeriod.indexCheckedItem == 1) this.classList.add('not_clickable');
+
+    if (listPeriod.indexCheckedItem == listPeriod.countItems - 1) listPeriod.btnNextItem.classList.remove('not_clickable');
+
+    listPeriod.indexCheckedItem--;
+    listPeriod.items[listPeriod.indexCheckedItem].checked = true;
+
+    listPeriod.wrapItems.style.top = (-40 * listPeriod.indexCheckedItem) + 'px';
+  };
+
+
+
+  // ********** GROUP **********
+
   var listGroups = {
     block: document.querySelector('.list_groups'),
     btnArrow: document.querySelector('.btn_arrow__list_groups'),
@@ -132,7 +171,7 @@
       var newGroup = document.createElement('label');
       newGroup.innerHTML = '<input type="radio" name="group" autocomplete="off" value="' + JSON.parse(data)[1] + '"><div class="item__list_groups anim_adding_new_group">' + nameGroup + '</div>';
 
-      listGroups.block.querySelector('label:first-child').insertAdjacentElement('beforeBegin', newGroup);
+      listGroups.block.insertAdjacentElement('afterBegin', newGroup);
       listGroups.block.style.height = listGroups.block.offsetHeight + 41 + 'px';
 
       listGroups.blockCreateGroup.classList.remove('block_create_new_group-visible');

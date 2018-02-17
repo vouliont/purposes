@@ -11,11 +11,11 @@ p {
 }
 
 input[type="text"] {
-  /* background-color: rgb(107, 105, 105);
-  border: 2px solid rgb(48, 47, 47); */
+  /* background-color: rgb(32, 32, 32);
+  border: 2px solid rgb(107, 105, 105); */
   background-color: rgb(0, 5, 54);
   border: 2px solid rgb(53, 201, 166);
-  border-radius: 22px;
+  border-radius: 12px;
   width: 100%;
   height: 44px;
   line-height: 44px;
@@ -37,7 +37,7 @@ input[type="text"] {
   transition: height 0.3s, opacity 0.3s, border 0.3s, margin 0.3s;
 }
 
-input[name="step[]"] {
+input[name="steps[]"] {
   padding-right: 60px;
   height: 100%;
 }
@@ -50,8 +50,8 @@ input[name="step[]"] {
   top: 0;
   right: 0;
   border: 0;
-  border-top-right-radius: 22px;
-  border-bottom-right-radius: 22px;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
   background-color: rgb(218, 0, 0);
   font-size: 22px;
 }
@@ -63,7 +63,7 @@ input[name="step[]"] {
   height: 44px;
   line-height: 44px;
   border: 0;
-  border-radius: 22px;
+  border-radius: 12px;
   background-color: rgb(0, 142, 44);
   font-size: 22px;
   position: absolute;
@@ -74,7 +74,82 @@ input[name="step[]"] {
 
 /* ----------   PERIOD   ---------- */
 
+.list_period {
+  width: 100%;
+  height: 44px;
+  background-color: rgb(0, 5, 54);
+  border: 2px solid rgb(53, 201, 166);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+}
 
+.list_period input[type="radio"] { display: none; }
+
+.wrap_items__list_period {
+  position: relative;
+  top: 0;
+  transition: top 0.3s;
+}
+
+.item__list_period {
+  width: 100%;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 15px;
+}
+
+.next_item__list_period {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 40px;
+  height: 20px;
+  background-color: rgb(1, 20, 70);
+}
+
+.next_item__list_period::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 5px 0;
+  border-color: rgb(53, 201, 166) transparent transparent;
+  position: absolute;
+  left: calc(50% - 5px);
+  top: calc(50% - 5px);
+}
+
+.prev_item__list_period {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 20px;
+  background-color: rgb(1, 20, 70);
+}
+
+.prev_item__list_period::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 5px 6px;
+  border-color: transparent transparent rgb(53, 201, 166);
+  position: absolute;
+  left: calc(50% - 5px);
+  top: calc(50% - 1px);
+}
+
+.not_clickable.prev_item__list_period::after {
+  border-bottom-color: rgb(107, 104, 104);
+}
+
+.not_clickable.next_item__list_period::after {
+  border-top-color: rgb(107, 104, 104);
+}
 
 /* ----------   GROUP   ---------- */
 
@@ -85,7 +160,7 @@ input[name="step[]"] {
   overflow: hidden;
   background-color: rgb(0, 5, 54);
   border: 2px solid rgb(53, 201, 166);
-  border-radius: 22px;
+  border-radius: 12px;
   transition: height 0.3s;
   padding-top: 40px;
 }
@@ -256,7 +331,7 @@ input[name="step[]"] {
   max-width: 200px;
   height: 44px;
   border: 2px solid rgb(53, 201, 166);
-  border-radius: 22px;
+  border-radius: 12px;
   margin: 30px auto 0;
   background-color: rgba(150, 0, 86, 0.19);
 }

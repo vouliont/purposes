@@ -13,7 +13,21 @@
   </div>
 
   <p>Period</p>
-  <div class="list_period"></div>
+  <div class="list_period">
+    <div class="wrap_items__list_period">
+      <label><input type="radio" name="period" value="0" autocomplete="off" checked><div class="item__list_period">non-periodic</div></label>
+      <label><input type="radio" name="period" value="1" autocomplete="off"><div class="item__list_period">1</div></label>
+      <label><input type="radio" name="period" value="2" autocomplete="off"><div class="item__list_period">2</div></label>
+      <label><input type="radio" name="period" value="3" autocomplete="off"><div class="item__list_period">3</div></label>
+      <label><input type="radio" name="period" value="4" autocomplete="off"><div class="item__list_period">4</div></label>
+      <label><input type="radio" name="period" value="5" autocomplete="off"><div class="item__list_period">5</div></label>
+      <label><input type="radio" name="period" value="6" autocomplete="off"><div class="item__list_period">6</div></label>
+      <label><input type="radio" name="period" value="7" autocomplete="off"><div class="item__list_period">7</div></label>
+    </div>
+
+    <div class="next_item__list_period"></div>
+    <div class="prev_item__list_period not_clickable"></div>
+  </div>
 
   <p>Group</p>
   <div class="list_groups">
